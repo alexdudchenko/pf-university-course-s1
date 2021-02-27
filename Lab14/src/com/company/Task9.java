@@ -4,35 +4,41 @@ import java.io.*;
 
 public class Task9 {
     public static void main(String[] args) {
-        longestZeroSequenceLength("C:\\Users\\serg\\Documents\\lab14_task9.bin");
+        String fileName = "C:\\Users\\alexp.DESKTOP-REM2UP4\\Documents\\lab14_task9.bin";
+
+        try {
+            System.out.println(longestZeroSequenceLength(fileName));
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+        }
+
     }
 
     public static long longestZeroSequenceLength(String filename) {
+        int value;
+        int counter = 0;
+        int maxCounter = 0;
 
-        try (FileInputStream fis = new FileInputStream(filename)) {
-            int value;
-            int counter = 0;
-            int maxcounter = 0;
-            while ((value = fis.read()) != -1) {
-                System.out.print(value);
-                System.out.println(" ");
+        try (FileInputStream fis = new FileInputStream(filename);
+            BufferedInputStream bis = new BufferedInputStream(fis)) {
+
+            while ((value = bis.read()) != -1) {
                 if (value == 0) {
                     counter++;
                 } else {
-                    if (maxcounter < counter) {
-                        maxcounter = counter;
+                    if (maxCounter < counter) {
+                        maxCounter = counter;
                     }
                     counter = 0;
                 }
             }
-            System.out.println("Найдовша послідовність 0 = " + maxcounter);
 
         } catch (FileNotFoundException ex) {
-            System.out.println("Sorry, no such file");
+            throw new RuntimeException("Sorry, no such file", ex);
         } catch (IOException ex) {
-            System.out.println("Sorry, IO exception");
+            throw new RuntimeException("Sorry, IO exception", ex);
         }
-        return -2;
+        return maxCounter;
     }
 
 }
