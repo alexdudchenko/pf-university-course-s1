@@ -43,7 +43,7 @@ public class Task2 {
             return ("Oops, IO exception");
         }
 
-        return "Стока # " + minLineNumber + " -- " + minString;
+        return "Строка # " + minLineNumber + " -- " + minString;
     }
 }
 
