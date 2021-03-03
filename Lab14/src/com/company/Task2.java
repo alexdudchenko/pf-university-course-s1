@@ -3,6 +3,7 @@ package com.company;
 import java.io.*;
 
 public class Task2 {
+
     public static void main (String[] args) {
         System.out.println(lastShortestString("C:\\Users\\alexp.DESKTOP-REM2UP4\\Documents\\lab14_part1.txt"));
     }
